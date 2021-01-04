@@ -1,0 +1,22 @@
+{
+    "default": {
+        "APP_NAME": "txt2speech-ui",
+        "JSON_INDENTATION": 2
+    },
+    "development": {
+        "CONFIG_ID": "development",
+        "ENV": "development",
+        "PORT": 3000,
+        "HOST": "127.0.0.1",
+        "API_SERVER_URL": "http://localhost:8080",
+        "THIS_SERVER_URL": "http://localhost:3000"
+    },
+    "production": {
+        "CONFIG_ID": "production",
+        "ENV": "production",
+        "PORT": 3000,
+        "HOST": "ts",
+        "API_SERVER_URL": "https://ts-api.holidaynumbers.co.uk",
+        "THIS_SERVER_URL": "https://ts.holidaynumbers.co.uk"
+    }
+}
