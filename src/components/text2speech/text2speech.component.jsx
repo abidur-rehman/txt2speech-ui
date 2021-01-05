@@ -5,6 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import SliderComponent from '../slider/slider.component';
 import CustomSelect from '../custom-select/custom-select.component';
 import { pitchMarks, rateMarks } from '../../util';
+import envConfig from '../../config/config';
+
+envConfig();
 
 const useStyles = makeStyles((theme) => ({
   loadingSpan: {
@@ -54,7 +57,7 @@ const Text2Speech = () => {
     formData.append('pitch', pitch);
     formData.append('speakingRate', selectedSpeakingRate);
     try {
-      const response = await fetch(`http://localhost:8080/speak`, {
+      const response = await fetch(`${global.gConfig.API_SERVER_URL}/speak`, {
         body: formData,
         method: 'POST'
       });

@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 COPY txt2speech-ui/package.json ./
 
 COPY txt2speech-ui ./
-COPY .env ./
+#COPY .env ./
 
 RUN yarn
 COPY txt2speech-ui ./
