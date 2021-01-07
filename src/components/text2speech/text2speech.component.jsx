@@ -11,7 +11,7 @@ envConfig();
 
 const useStyles = makeStyles((theme) => ({
   loadingSpan: {
-    marginLeft: '47%',
+    marginLeft: '18%',
   },
   button: {
     minWidth: '200px'
@@ -70,7 +70,6 @@ const Text2Speech = () => {
       link.click();
     } finally {
       setLoading(false);
-      setFullDesc('');
     }
   }
 
@@ -87,17 +86,28 @@ const Text2Speech = () => {
     }
   }
 
+  const handleSubmitClear = (e) => {
+    e.preventDefault();
+    setFullDesc('');
+  }
+
   const fileSelected = async (e) => {
-    // const { files: data } = e.target;
-    // const file = data[0];
+    const { files: data } = e.target;
+    const file = data[0];
     // setSelectedFile(file);
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const text = (e.target.result)
-      setFullDesc(text);
-    };
-    reader.readAsText(e.target.files[0])
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const text = (e.target.result)
+        setFullDesc(text);
+      };
+      reader.readAsText(e.target.files[0]);
+    }
   };
+
+  const onInputClick = (e) => {
+    e.target.value = '';
+  }
 
   const handleTextChange = e => {
     const { value } = e.target;
@@ -109,7 +119,7 @@ const Text2Speech = () => {
       <Grid container direction="row" justify="center" alignItems="center">
        <Grid item xs={12}><h3>Welcome! Convert your text to voice</h3></Grid>
        <Grid item xs={12}><UploadLabel item htmlFor='front' className='upload'>Upload File</UploadLabel></Grid>
-       <Grid item xs={12}><UploadInput id='front' name='front' style={{visibility: 'hidden'}} type='file' onChange={fileSelected}/></Grid>
+       <Grid item xs={12}><UploadInput id='front' name='front' style={{visibility: 'hidden'}} type='file' onChange={fileSelected} onClick={onInputClick}/></Grid>
        <Grid item xs={12}><AreaContainer onChange={handleTextChange} minlength='10' maxlength='2000' value={fullDesc}/></Grid>
        <Grid item xs={12}>
         <CustomSelect callback={setSelectedLanguage} default={selectedLanguage} label='Language' options={langOptions}/>
@@ -125,6 +135,7 @@ const Text2Speech = () => {
        </Grid>
        <Grid item xs={12}>
          <Button className={classes.button} disabled={loading} onClick={handleSubmit} variant='contained' color='primary'> Submit </Button>
+         <Button className={classes.button} disabled={loading} onClick={handleSubmitClear} variant='contained' color='primary'> Clear </Button>
        </Grid>
        <Grid item xs={12}>
         <Fade in={loading}

@@ -23,7 +23,6 @@ export const AreaContainer = styled.textarea`
   height: 200px;
   font-size: inherit;
   padding: 5px;
-  resize: none;
   border-radius: 5px;
   overflow-y: scroll;
   @media screen and (min-width: 1000px) {
@@ -34,6 +33,5 @@ export const AreaContainer = styled.textarea`
 export const Button = styled(MiButton)`
   variant: ${props => props.variant}
   color: ${props => props.color};
-  display: block !important;
-  margin: 20px auto 20px auto !important;
+  margin: 40px 20px 30px auto !important;
 `;
